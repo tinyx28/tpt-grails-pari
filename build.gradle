@@ -10,6 +10,13 @@ buildscript {
     }
 }
 
+task copyToLib(type: Copy) {
+    into "$buildDir/libs"
+    from(configurations.compile)
+}
+
+stage.dependsOn(copyToLib)
+
 version "0.1"
 group "backend.grails.pari"
 
