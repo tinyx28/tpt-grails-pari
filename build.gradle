@@ -55,7 +55,7 @@ dependencies {
     compile "org.grails.plugins:hibernate5"
     compile "org.hibernate:hibernate-core:5.4.18.Final"
 
-//    compile 'com.github.jsimone:webapp-runner:8.5.11.3'
+    compile 'com.github.jsimone:webapp-runner:8.5.11.3'
 
     compileOnly "io.micronaut:micronaut-inject-groovy"
     console "org.grails:grails-console"
@@ -114,3 +114,18 @@ tasks.withType(Test) {
     systemProperty "webdriver.chrome.driver", System.getProperty('webdriver.chrome.driver')
     systemProperty "webdriver.gecko.driver", System.getProperty('webdriver.gecko.driver')
 }
+
+
+task stage() {
+    dependsOn clean, war
+}
+war.mustRunAfter clean
+
+task copyToLib(type: Copy) {
+    into "$buildDir/server"
+    from(configurations.compile) {
+        include "webapp-runner*"
+    }
+}
+
+stage.dependsOn(copyToLib)
