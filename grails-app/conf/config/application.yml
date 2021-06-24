@@ -22,13 +22,16 @@ environments:
 #    dataSource:
 #      dbCreate: update
 #      url: jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
-#    production:
-#      dataSource:
-#        pooled: true
-#        jmxExport: true
-#        driverClassName: oracle.jdbc.OracleDriver
-#        username: narindra
-#        password: root
-#        url: "jdbc:oracle:thin:@//192.168.88.130:1521/ORCLPDB"
+  production:
+    dataSource:
+      pooled: true
+      jmxExport: true
+      driverClassName: oracle.jdbc.OracleDriver
+      dialect : org.hibernate.dialect.Oracle10gDialect
+      dbCreate: update
+      url: "jdbc:oracle:thin:@141.94.27.99:49161:xe"
+      username: narindra
+      password: root
+        
 
 
